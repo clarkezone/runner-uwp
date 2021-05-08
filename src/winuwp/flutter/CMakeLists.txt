@@ -82,23 +82,6 @@ target_include_directories(flutter_wrapper_app PUBLIC
 )
 add_dependencies(flutter_wrapper_app flutter_assemble)
 
-# === Flutter tool backend ===
-# _phony_ is a non-existent file to force this command to run every time,
-# since currently there's no way to get a full input/output list from the
-# flutter tool.
-set(PHONY_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/_phony_")
-set_source_files_properties("${PHONY_OUTPUT}" PROPERTIES SYMBOLIC TRUE)
-# add_custom_command(
-#   OUTPUT ${FLUTTER_LIBRARY} ${FLUTTER_LIBRARY_HEADERS}
-#     ${CPP_WRAPPER_SOURCES_CORE} ${CPP_WRAPPER_SOURCES_PLUGIN}
-#     ${CPP_WRAPPER_SOURCES_APP} ${CMAKE_INSTALL_MANIFEST}
-#     ${PHONY_OUTPUT}
-#   COMMAND ${CMAKE_COMMAND} -E env
-#     ${FLUTTER_TOOL_ENVIRONMENT}
-#     "${FLUTTER_ROOT}/packages/flutter_tools/bin/tool_backend.bat"
-#       windows-uwp-x64 $<CONFIG>
-#   VERBATIM
-# )
 add_custom_target(flutter_assemble DEPENDS
   "${FLUTTER_LIBRARY}"
   ${FLUTTER_LIBRARY_HEADERS}
