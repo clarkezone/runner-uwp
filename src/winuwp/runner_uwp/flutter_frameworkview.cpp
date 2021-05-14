@@ -110,10 +110,15 @@ struct FlutterFrameworkView
                                    aot_data_path);
 
       // Construct viewcontroller using the Window and project
-            flutter_view_controller_ = std::make_unique<flutter::FlutterViewController>(
-                static_cast<ABI::Windows::ApplicationModel::Core::CoreApplicationView*>(winrt::get_abi(main_view_)),
-                static_cast<ABI::Windows::ApplicationModel::Activation::IActivatedEventArgs*>(winrt::get_abi(launch_args_)),
-                project);
+      flutter_view_controller_ =
+          std::make_unique<flutter::FlutterViewController>(
+              static_cast<
+                  ABI::Windows::ApplicationModel::Core::CoreApplicationView *>(
+                  winrt::get_abi(main_view_)),
+              static_cast<ABI::Windows::ApplicationModel::Activation::
+                              IActivatedEventArgs *>(
+                  winrt::get_abi(launch_args_)),
+              project);
 
       // If plugins present, register them.
       RegisterPlugins(flutter_view_controller_.get()->engine());
